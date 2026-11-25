@@ -1,10 +1,12 @@
+
+
 public class Book {
 
-    // 1. Private Attributes (Encapsulation)
     private String title;
     private String author;
     private double price;
     private int year;
+    private int pages;
 
     // 2. Static Attribute (shared by all objects)
     private static int bookCount = 0;
@@ -15,44 +17,33 @@ public class Book {
         this.author = "Unknown";
         this.price = 1.0;
         this.year = 2026;
+        this.pages = 100;
         bookCount++;
     }
 
     // 4. Parameterized Constructor (with validation)
-    public Book(String title, String author, double price, int year) {
+    public Book(String title, String author, double price, int year, int pages) {
         // Use setters to reuse validation logic
         setTitle(title);
         setAuthor(author);
         setPrice(price);
         setYear(year);
+        setPages(pages);
         bookCount++;
     }
 
     // 5. Copy Constructor
     public Book(Book other) {
-        this(other.title, other.author, other.price, other.year);
+        this(other.title, other.author, other.price, other.year, other.pages);
     }
 
     // 6. Getters
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public static int getBookCount() {
-        return bookCount;
-    }
+    public String getTitle() { return title; }
+    public String getAuthor() { return author; }
+    public double getPrice() { return price; }
+    public int getYear() { return year; }
+    public int getPages() { return pages; }
+    public static int getBookCount() { return bookCount; }
 
     // 7. Setters with Validation
     public void setTitle(String title) {
@@ -87,13 +78,22 @@ public class Book {
         }
     }
 
+    public void setPages(int pages) {
+        if (pages > 0) {
+            this.pages = pages;
+        } else {
+            System.out.println("Invalid pages. Must be > 0.");
+        }
+    }
+
     // 8. Behavior
     public void displayInfo() {
         System.out.println("Title : " + title);
         System.out.println("Author : " + author);
         System.out.println("Price : " + price + " DA");
         System.out.println("Year : " + year);
-        System.out.println("----------------------------------------");
+        System.out.println("Pages : " + pages);
+        System.out.println("----------------------------");
     }
 
     // 9. Behavior with logic
